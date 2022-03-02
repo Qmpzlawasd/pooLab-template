@@ -17,7 +17,7 @@ class Individ
     void moare();
 
 public:
-    Individ() : varsta{0}, energia{0}, viu{'0'} {}
+    Individ() :  i{0},tip{'+'} ,varsta{0}, energia{0}, viu{'0'} {}
     Individ(int poz, char tipp) : i{poz}, tip{tipp}, varsta{0}, energia{30}, viu{'1'} {}
     Individ(int poz, char tipp, int vars, double ener) : i{poz}, tip{tipp}, varsta{vars}, energia{ener}, viu{'1'} {}
     friend ostream &operator<<(ostream &, const Individ &);
