@@ -154,7 +154,7 @@ int main() // exit(-1) ==> urmeaza eroare
                 exit(-1);
 
             break;
-
+            
         case 2:
             if (aux != -1)
             {
