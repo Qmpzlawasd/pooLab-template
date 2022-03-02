@@ -17,7 +17,8 @@ class Individ
     void hraneste();
     void moare();
 
-public:
+public://stric putin codul pt github
+    Individ() : varsta{0}, energia{0}, viu{'0'},i{0},tip{'+'} {}
     Individ() : varsta{0}, energia{0}, viu{'0'} {}
     Individ(int poz, char tipp) : i{poz}, tip{tipp}, varsta{0}, energia{30}, viu{'1'} {}
     Individ(int poz, char tipp, int vars, double ener) : i{poz}, tip{tipp}, varsta{vars}, energia{ener}, viu{'1'} {}
