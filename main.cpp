@@ -121,7 +121,7 @@ int Individ::getI() const { return i; }
 
 int main() // exit(-1) ==> urmeaza eroare
 {
-    srand(time(nullptr));
+    // srand(time(nullptr));
     static Individ v[31];
 
     int choice;
