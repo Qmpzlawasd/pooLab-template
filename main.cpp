@@ -1,7 +1,6 @@
 #include <iostream>
 #include <time.h>
 #include <string.h>
-// #include "Individ.h"
 using namespace std;
 
 class Individ
