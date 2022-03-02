@@ -1,5 +1,5 @@
 #include <iostream>
-// #include <time.h>
+#include <time.h>
 #include <string.h>
 // #include "Individ.h"
 using namespace std;
@@ -121,7 +121,7 @@ int Individ::getI() const { return i; }
 
 int main() // exit(-1) ==> urmeaza eroare
 {
-    // srand(time(nullptr));
+    srand ( static_cast<unsigned int>(time(NULL)) );
     static Individ v[31];
 
     int choice;
