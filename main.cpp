@@ -123,7 +123,7 @@ int main() // exit(-1) ==> urmeaza eroare
     srand ( static_cast<unsigned int>(time(NULL)) );
     static Individ v[31];
 
-    int choice;
+    int choice{123132123};
     int aux{-1};
     int val;
     while (1)
