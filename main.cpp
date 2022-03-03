@@ -124,7 +124,7 @@ int main() // exit(-1) ==> urmeaza eroare
 
     int choice{123132123};
     int aux{-1};
-    int val{-1};
+    int val;
     while (1)
     {
         cout << "\n\n-----------------------\nMeniu:\n1: citire indivizi\n2: actualizeaza\n3: e viu??\n4: get tip\n5: exit \n-----------------------\n\n";
