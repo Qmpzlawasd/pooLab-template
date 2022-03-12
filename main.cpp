@@ -16,18 +16,45 @@ class Individ
     void moare();
 
 public:
-    Individ() :  i{0},tip{'+'} ,varsta{0}, energia{0}, viu{'0'} {}
+    Individ() : i{0}, tip{'+'}, varsta{0}, energia{0}, viu{'0'} {}
     Individ(int poz, char tipp) : i{poz}, tip{tipp}, varsta{0}, energia{30}, viu{'1'} {}
     Individ(int poz, char tipp, int vars, double ener) : i{poz}, tip{tipp}, varsta{vars}, energia{ener}, viu{'1'} {}
     friend ostream &operator<<(ostream &, const Individ &);
     friend istream &operator>>(istream &, Individ &);
+
     void actualizare(Individ[]);
     bool esteviu() const;
     char gettip() const;
     int getI() const;
-    ~Individ(){}
-};
+    ~Individ() {}
 
+    ////////////////////////////////
+    int getvarsta() const;
+    double getenergie() const;
+    void setLife(const unsigned char& );
+    void settip(const char &);
+    void setI(const int &);
+    void setvarsta(const int &);
+    void setenergie(const double &);
+    Individ &operator=(const Individ &);
+    void afis(const Individ a[],const int& nr) const
+    {
+        for (size_t i = 0; i < nr; i++)
+        {
+            cout << a[i];
+        }
+    }
+};
+Individ &Individ::operator=(const Individ &x)
+{
+
+    i = x.i;
+    tip = x.tip;
+    varsta = x.varsta;
+    energia = x.energia;
+    viu = x.viu;
+    return *this;
+}
 
 void Individ::imbatraneste()
 {
@@ -116,18 +143,43 @@ void Individ::actualizare(Individ a[])
 bool Individ::esteviu() const { return viu == '1' ? 1 : 0; }
 char Individ::gettip() const { return tip; }
 int Individ::getI() const { return i; }
+///////////////////////
+int Individ::getvarsta() const { return varsta; }
+double Individ::getenergie() const { return energia; }
+void Individ::setLife(const unsigned char& vviu)
+{
+    viu = vviu;
+}
+void Individ::settip(const char& ttip)
+{
+    tip = ttip;
+}
+void Individ::setI(const int& ii)
+{
+    i = ii;
+}
+void Individ::setvarsta(const int& vvarsta)
+{
+    varsta = vvarsta;
+}
+void Individ::setenergie(const double& eenergia)
+{
+    energia = eenergia;
+}
 
 int main() // exit(-1) ==> urmeaza eroare
 {
-    srand ( static_cast<unsigned int>(time(NULL)) );
+    srand(static_cast<unsigned int>(time(NULL)));
     static Individ v[31];
-
+    
     int choice{123132123};
     int aux{-1};
     int val{-1};
     while (1)
     {
-        cout << "\n\n-----------------------\nMeniu:\n1: citire indivizi\n2: actualizeaza\n3: e viu??\n4: get tip\n5: exit \n-----------------------\n\n";
+        cout << "\n\n-----------------------\nMeniu:\n1: citire indivizi\n2: \
+        actualizeaza\n3: e viu??\n4: get \
+         tip\n5: exit \n-----------------------\n\n";
         // for (size_t j = 0; j < 10; j++)
         // {
 
@@ -152,7 +204,7 @@ int main() // exit(-1) ==> urmeaza eroare
                 exit(-1);
 
             break;
-            
+
         case 2:
             if (aux != -1)
             {
