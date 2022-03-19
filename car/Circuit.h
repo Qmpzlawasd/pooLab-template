@@ -23,7 +23,14 @@ public:
         }
 
         cars[j++] = c;
+    // for (size_t i = 0; i < j; i++)
+    // {
+    //     cout<<cars[i].getSpeed()<<
+    //      ' '<<j<<' ';
+    // }
+    // cout<<endl;
     }
+    
     void showFinalRanks() const;
 };
 
@@ -55,7 +62,7 @@ void Circuit::showFinalRanks() const
     std::cout << std::endl;
     srand(time(0));
 
-    int minn, mm;
+    int minn;
     short corruptionIndex;
 
     std::map<int, int> v;
@@ -75,12 +82,11 @@ void Circuit::showFinalRanks() const
             if (cars[minn] < cars[k])
                 minn = k;
         }
-
         Car p{cars[minn]};
         cars[minn] = cars[i];
         cars[i] = p;
     }
-
+    std::cout << "\n*******------------RANKS-----------------****\n";
     for (size_t i = 0; i < j; i++)
     {
 
@@ -90,9 +96,10 @@ void Circuit::showFinalRanks() const
             {
 
                 std::cout << "Locul " << i + 1 << "  masina cu numarul " << 1 + b << " cu viteza de " << cars[i].getSpeed() << " "
-                     << "\n----------------------------------------\n";
-                v.erase(b);
+                     << "\n---------------------------------------------\n";
+                v.erase(b);break;
             }
     }
+
     std::cout << std::endl;
 }
