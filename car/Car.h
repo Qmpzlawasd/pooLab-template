@@ -4,43 +4,47 @@ class Car
     int vitezaTeoretica;
 
 public:
-    virtual int getSpeed() { return vitezaTeoretica; }
-    template <class T>
-    Car &operator=(const T *d)
+    virtual ~Car(){};
+    explicit Car() : vitezaTeoretica{123} {}
+    virtual int getSpeed() const
     {
-        vitezaTeoretica = d->getSpeed();
-        return *this;
-    }
-    void setSpeed(const int &c)
-    {
-        vitezaTeoretica = c;
-    }
-    template <class T>
-    bool operator>(T &d)
-    {
-        return (vitezaTeoretica > d.getSpeed()) ? 1 : 0;
-    }
-    template <class T>
-    bool operator==(T &d)
-    {
-        return (vitezaTeoretica ==d.getSpeed()) ? 1 : 0;
-    }
-    template <class T>
-    bool operator<(T &d)
-    {
-        return (vitezaTeoretica < d.getSpeed()) ? 1 : 0;
-    }
-    template <class T>
-    bool operator<=(T &d)
-    {
-        return (vitezaTeoretica <= d.getSpeed()) ? 1 : 0;
-    }
-    template <class T>
-    bool operator>=(T &d)
-    {
-        return (vitezaTeoretica >= d.getSpeed()) ? 1 : 0;
+        return vitezaTeoretica;
     }
     explicit Car(const Car &x) : vitezaTeoretica{x.vitezaTeoretica} {}
-    explicit Car() : vitezaTeoretica{123} {}
-    virtual ~Car(){};
+    Car &operator=(const Car *);
+    void setSpeed(const int &);
+    bool operator>(const Car &)const;
+    bool operator==(const Car &)const;
+    bool operator<(const Car &)const;
+    bool operator<=(const Car &)const;
+    bool operator>=(const Car &)const;
 };
+Car &Car::operator=(const Car *d)
+{
+    vitezaTeoretica = d->getSpeed();
+    return *this;
+}
+void Car::setSpeed(const int &c)
+{
+    vitezaTeoretica = c;
+}
+bool Car::operator>(const Car &d)const
+{
+    return (vitezaTeoretica > d.getSpeed()) ? 1 : 0;
+}
+bool Car::operator==(const Car &d)const
+{
+    return (vitezaTeoretica == d.getSpeed()) ? 1 : 0;
+}
+bool Car::operator<(const Car &d)const
+{
+    return (vitezaTeoretica < d.getSpeed()) ? 1 : 0;
+}
+bool Car::operator>=(const Car &d)const
+{
+    return (vitezaTeoretica >= d.getSpeed()) ? 1 : 0;
+}
+bool Car::operator<=(const Car &d)const
+{
+    return (vitezaTeoretica <= d.getSpeed()) ? 1 : 0;
+}
