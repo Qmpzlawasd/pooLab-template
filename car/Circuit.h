@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
-#include <vector>
+#include <algorithm>
 #include <map>
-// using namespace std;
 #include "Car.h"
 class Circuit
 {
@@ -12,27 +11,24 @@ class Circuit
 public:
     explicit Circuit(const int &);
     explicit Circuit(const Circuit &);
-    ~Circuit();
-    template <class T>
-    void addCar(T *c)
-    {
-        if (j == len)
-        {
-            std::cerr << "OUT OF SPACE POUR LE ARRAY" << std::endl;
-            std::exit(-1);
-        }
-
-        cars[j++] = c;
-    // for (size_t i = 0; i < j; i++)
-    // {
-    //     cout<<cars[i].getSpeed()<<
-    //      ' '<<j<<' ';
-    // }
-    // cout<<endl;
-    }
-    
+    explicit Circuit() : Circuit(20){};
     void showFinalRanks() const;
+    template <class T>
+    void addCar(T *c);
+    ~Circuit();
+
 };
+template <class T>
+void Circuit::addCar(T *c)
+{
+    if (j == len)
+    {
+        std::cerr << "NO SPACE FOR RACE" << std::endl;
+        std::exit(-1);
+    }
+
+    cars[j++] = c;
+}
 
 Circuit::Circuit(const int &nr)
 {
@@ -64,42 +60,34 @@ void Circuit::showFinalRanks() const
 
     int minn;
     short corruptionIndex;
+    int *sort_pls = new int[j];
 
     std::map<int, int> v;
     for (size_t i = 0; i < j; i++)
     {
 
         corruptionIndex = rand() % 9;
-        cars[i].setSpeed(cars[i].getSpeed() + corruptionIndex);
-        v[i] = (cars[i].getSpeed());
-    }
 
-    for (size_t i = 0; i < j; i++)
-    {
-        minn = i;
-        for (size_t k = i + 1; k < j; k++)
-        {
-            if (cars[minn] < cars[k])
-                minn = k;
-        }
-        Car p{cars[minn]};
-        cars[minn] = cars[i];
-        cars[i] = p;
+        sort_pls[i] = cars[i].getSpeed() + corruptionIndex;
+
+        v[i] = sort_pls[i];
     }
+    std::sort(sort_pls, sort_pls + j);
     std::cout << "\n*******------------RANKS-----------------****\n";
     for (size_t i = 0; i < j; i++)
     {
 
         for (size_t b = 0; b < v.size(); b++)
 
-            if (v[b] == cars[i].getSpeed())
+            if (v[b] == sort_pls[i])
             {
 
-                std::cout << "Locul " << i + 1 << "  masina cu numarul " << 1 + b << " cu viteza de " << cars[i].getSpeed() << " "
-                     << "\n---------------------------------------------\n";
-                v.erase(b);break;
+                std::cout << "Locul " << i + 1 << "  masina cu numarul " << 1 + b << " cu viteza de " << sort_pls[i] << " "
+                          << "\n---------------------------------------------\n";
+                v.erase(b);
+                break;
             }
     }
-
+    delete[] sort_pls;
     std::cout << std::endl;
 }

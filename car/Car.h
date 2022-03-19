@@ -5,20 +5,22 @@ class Car
 
 public:
     virtual ~Car(){};
+    virtual int getSpeed() const;
     explicit Car() : vitezaTeoretica{123} {}
-    virtual int getSpeed() const
-    {
-        return vitezaTeoretica;
-    }
     explicit Car(const Car &x) : vitezaTeoretica{x.vitezaTeoretica} {}
+    bool operator>(const Car &) const;
+    bool operator==(const Car &) const;
+    bool operator<(const Car &) const;
+    bool operator<=(const Car &) const;
+    bool operator>=(const Car &) const;
     Car &operator=(const Car *);
     void setSpeed(const int &);
-    bool operator>(const Car &)const;
-    bool operator==(const Car &)const;
-    bool operator<(const Car &)const;
-    bool operator<=(const Car &)const;
-    bool operator>=(const Car &)const;
 };
+ int Car::getSpeed() const
+{
+    return vitezaTeoretica;
+}
+
 Car &Car::operator=(const Car *d)
 {
     vitezaTeoretica = d->getSpeed();
@@ -28,23 +30,23 @@ void Car::setSpeed(const int &c)
 {
     vitezaTeoretica = c;
 }
-bool Car::operator>(const Car &d)const
+bool Car::operator>(const Car &d) const
 {
     return (vitezaTeoretica > d.getSpeed()) ? 1 : 0;
 }
-bool Car::operator==(const Car &d)const
+bool Car::operator==(const Car &d) const
 {
     return (vitezaTeoretica == d.getSpeed()) ? 1 : 0;
 }
-bool Car::operator<(const Car &d)const
+bool Car::operator<(const Car &d) const
 {
     return (vitezaTeoretica < d.getSpeed()) ? 1 : 0;
 }
-bool Car::operator>=(const Car &d)const
+bool Car::operator>=(const Car &d) const
 {
     return (vitezaTeoretica >= d.getSpeed()) ? 1 : 0;
 }
-bool Car::operator<=(const Car &d)const
+bool Car::operator<=(const Car &d) const
 {
     return (vitezaTeoretica <= d.getSpeed()) ? 1 : 0;
 }

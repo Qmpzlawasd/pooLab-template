@@ -5,8 +5,7 @@ private:
     int vitezaTeoretica;
 
 public:
-    Dacia(const int &nr) : vitezaTeoretica{nr} {}
-    Dacia():vitezaTeoretica{0} {}
     ~Dacia(){}
+    Dacia(const int &nr) : vitezaTeoretica{nr} {}
     int getSpeed() const { return vitezaTeoretica; }
 };
