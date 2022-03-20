@@ -10,21 +10,20 @@ int main()
     
            
           
-     Circuit a{6};
+     Circuit a{61};
     a.addCar(new Dacia{13});
-    a.addCar(new Toyota{10});
+    a.addCar(new Toyota{14});
+    a.addCar(new Renault{12});
     a.addCar(new Renault{10});
     a.addCar(new Renault{10});
-    a.addCar(new Renault{10});
-   Circuit b{};
+   Circuit b{a};
     b.addCar(new Renault{10});
     b.addCar(new Renault{10});
-    b.addCar(new Renault{10});
+    b.addCar(new Renault{14});
     b.addCar(new Renault{10});
     b.addCar(new Dacia{12});
-    b.addCar(new Toyota{10});
+    b.addCar(new Toyota{14});
     b.showFinalRanks();
-    a.showFinalRanks();
 
 
 

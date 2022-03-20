@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include <algorithm>
 #include <map>
 #include "Car.h"
@@ -16,7 +17,6 @@ public:
     template <class T>
     void addCar(T *c);
     ~Circuit();
-
 };
 template <class T>
 void Circuit::addCar(T *c)
@@ -40,9 +40,9 @@ Circuit::Circuit(const int &nr)
 Circuit::Circuit(const Circuit &x)
 {
     len = x.len;
-    j = 0;
+    j = x.j;
     cars = new Car[x.len];
-    for (size_t i = 0; i < len; i++)
+    for (size_t i = 0; i < x.j; i++)
     {
         cars[i] = x.cars[i];
     }
@@ -55,39 +55,25 @@ Circuit::~Circuit()
 
 void Circuit::showFinalRanks() const
 {
-    std::cout << std::endl;
     srand(time(0));
-
-    int minn;
-    short corruptionIndex;
-    int *sort_pls = new int[j];
-
-    std::map<int, int> v;
+    std::cout << std::endl;
+    short corruptionIndex ,loc{0};
+    std::map<int, std::vector<int>> v;
     for (size_t i = 0; i < j; i++)
     {
-
         corruptionIndex = rand() % 9;
-
-        sort_pls[i] = cars[i].getSpeed() + corruptionIndex;
-
-        v[i] = sort_pls[i];
+        v[cars[i].getSpeed() + corruptionIndex].push_back(i);
     }
-    std::sort(sort_pls, sort_pls + j);
     std::cout << "\n*******------------RANKS-----------------****\n";
-    for (size_t i = 0; i < j; i++)
+    
+    for (const auto& i : v)
     {
-
-        for (size_t b = 0; b < v.size(); b++)
-
-            if (v[b] == sort_pls[i])
-            {
-
-                std::cout << "Locul " << i + 1 << "  masina cu numarul " << 1 + b << " cu viteza de " << sort_pls[i] << " "
-                          << "\n---------------------------------------------\n";
-                v.erase(b);
-                break;
-            }
+        for (const auto& j : i.second)
+        {
+            loc++;
+            std::cout << "Locul " << loc << "  masina cu numarul " << j + 1 << " cu viteza de " << i.first << " "
+                      << "\n---------------------------------------------\n";
+        }
     }
-    delete[] sort_pls;
     std::cout << std::endl;
 }
