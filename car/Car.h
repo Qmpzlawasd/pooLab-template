@@ -17,7 +17,6 @@ public:
 };
 int Car::getSpeed() const
 {
-    std::cout << 'a';
     return vitezaTeoretica;
 }
 

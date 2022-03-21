@@ -26,7 +26,6 @@ void Circuit::addCar(Car *c)
     }
 
     cars[j++] = c;
-    // std::cerr << cars[j-1]->getSpeed() << std::endl;
 }
 
 Circuit::Circuit(const int &nr)

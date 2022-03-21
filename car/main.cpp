@@ -7,9 +7,6 @@
 using namespace std;
 int main()
 {   
-    
-           
-          
      Circuit a{61};
     a.addCar(new Dacia{13});
     a.addCar(new Toyota{14});
@@ -24,8 +21,4 @@ int main()
     b.addCar(new Dacia{12});
     b.addCar(new Toyota{14});
     b.showFinalRanks();
-
-
-
-
 }
