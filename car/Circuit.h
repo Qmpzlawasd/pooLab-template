@@ -6,7 +6,7 @@
 #include "Car.h"
 class Circuit
 {
-    Car *cars;
+    Car **cars; //////////////////conflict
     int len, j;
 
 public:
@@ -14,12 +14,10 @@ public:
     explicit Circuit(const Circuit &);
     explicit Circuit() : Circuit(20){};
     void showFinalRanks() const;
-    template <class T>
-    void addCar(T *c);
+    void addCar(Car *c);
     ~Circuit();
 };
-template <class T>
-void Circuit::addCar(T *c)
+void Circuit::addCar(Car *c)
 {
     if (j == len)
     {
@@ -28,21 +26,22 @@ void Circuit::addCar(T *c)
     }
 
     cars[j++] = c;
+    // std::cerr << cars[j-1]->getSpeed() << std::endl;
 }
 
 Circuit::Circuit(const int &nr)
 {
     j = 0;
     len = nr;
-    cars = new Car[nr];
+    cars = new Car *[nr];
 }
 
 Circuit::Circuit(const Circuit &x)
 {
     len = x.len;
     j = x.j;
-    cars = new Car[x.len];
-    for (size_t i = 0; i < x.j; i++)
+    cars = new Car *[x.len];
+    for (size_t i = 0; i < j; i++)
     {
         cars[i] = x.cars[i];
     }
@@ -57,18 +56,18 @@ void Circuit::showFinalRanks() const
 {
     srand(time(0));
     std::cout << std::endl;
-    short corruptionIndex ,loc{0};
-    std::map<int, std::vector<int>> v;
+    short corruptionIndex, loc{0};
+    std::map<int, std::vector<int>, std::greater<int>> v;
     for (size_t i = 0; i < j; i++)
     {
         corruptionIndex = rand() % 9;
-        v[cars[i].getSpeed() + corruptionIndex].push_back(i);
+        v[cars[i]->getSpeed() + corruptionIndex].push_back(i);
     }
     std::cout << "\n*******------------RANKS-----------------****\n";
-    
-    for (const auto& i : v)
+
+    for (const auto &i : v)
     {
-        for (const auto& j : i.second)
+        for (const auto &j : i.second)
         {
             loc++;
             std::cout << "Locul " << loc << "  masina cu numarul " << j + 1 << " cu viteza de " << i.first << " "

@@ -15,8 +15,9 @@ public:
     bool operator>=(const Car &) const;
     Car &operator=(const Car *);
 };
- int Car::getSpeed() const
+int Car::getSpeed() const
 {
+    std::cout << 'a';
     return vitezaTeoretica;
 }
 
