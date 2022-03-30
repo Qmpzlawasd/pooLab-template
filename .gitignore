@@ -1,4 +1,5 @@
-.json
+*.json
+.vscode/
 tempCodeRunnerFile.cpp
 # Prerequisites
 *.d
