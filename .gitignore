@@ -1,6 +1,7 @@
 *.json
 .vscode/
 tempCodeRunnerFile.cpp
+car/
 # Prerequisites
 *.d
 # Compiled Object files
