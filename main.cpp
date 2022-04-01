@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <memory>
+#include <vector>
 #include "Proces/Proces.h"
 #include "Proces/Proces_civil.h"
 #include "Proces/Proces_penal.h"
@@ -6,6 +9,21 @@ using namespace std;
 
 int main()
 {
+    vector<Proces*> v;
+    int n;
+    cin >> n;
+    for (size_t i = 0; i < n; i++)
+    {
+        cout <<"\n";
+        // v.push_back(new Proces_civil)
+
+    }
+
+    for (size_t i = 0; i < n; i++)
+    {
+        // cout <<;
+    }
+
     // ema 14. Se dau clasele:
     // - Proces (int nrProces, string reclamant, string reclamat)
     // - Proces_civil (double dauneMorale, double dauneMateriale, int nrMartori, bool
@@ -18,6 +36,4 @@ int main()
     // de timbru pentru fiecare proces civil. Taxa de timbru = 10/100 * dauneMorale + 10% *
     // dauneMateriale.
     // Sa se afle procesul care are taxa de timbru cea mai mare.
-
-
 }
