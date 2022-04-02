@@ -1,24 +1,19 @@
 #pragma once
 #include <string>
+using namespace std;
 #include <iostream>
-
 class Proces
 {
-    // protected:
+protected:
     std::string reclamant;
     std::string reclamat;
     int nrProces;
 
 public:
+    virtual bool getStadiu() const = 0;
     virtual ~Proces(){};
-    Proces() : nrProces{-1}, reclamant{""}, reclamat{""} {}
-    Proces(int nrProces, std::string reclamant, std::string reclamat) : nrProces{nrProces}, reclamant{reclamant}, reclamat{reclamat} {};
-    Proces(const Proces &x)
-    {
-        nrProces = x.nrProces;
-        reclamant = x.reclamant;
-        reclamat = x.reclamat;
-    }
+    Proces(int nrProces = -1, std::string reclamant = "", std::string reclamat = "") : nrProces{nrProces}, reclamant{reclamant}, reclamat{reclamat} {};
+    Proces(const Proces &x) : nrProces{x.nrProces}, reclamant{x.reclamant}, reclamat{x.reclamat} {}
     Proces &operator=(const Proces &x)
     {
         nrProces = x.nrProces;
