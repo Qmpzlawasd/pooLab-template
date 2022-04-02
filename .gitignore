@@ -2,6 +2,8 @@
 .vscode/
 tempCodeRunnerFile.cpp
 car/
+tempCodeRunnerFile.h
+Proces/tempCodeRunnerFile.h
 # Prerequisites
 *.d
 # Compiled Object files

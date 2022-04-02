@@ -1,26 +1,46 @@
 #include <ostream>
 #include <fstream>
-// #include <iostream>
-#include <fstream>
 #include <memory>
 #include <vector>
 #include "Proces/Proces.h"
 #include "Proces/Proces_civil.h"
 #include "Proces/Proces_penal.h"
 using namespace std;
+// #include <iostream>
 ifstream cin("date.txt");
 int main()
 {
     vector<Proces *> v;
-    int n;
-    Proces_civil a, b;
+    int n{4};
+    for (size_t i = 0; i < n; i++)
+    {
+        Proces *a;
+        if (i & 1)
+        {
+            a = new Proces_civil;
+        }
+        else
+            a = new Proces_penal;
+
+        ::cin >> *a;
+        cout << "\n";
+        v.push_back(a);
+    }
+    for (size_t i = 0; i < n; i++)
+    {
+        cout << "\n";
+        cout << *v[i];
+        delete v[i];
+    }
+    Proces_civil *b = new Proces_civil;
+    ::cin >> *b;
     cout << "\n";
-    ::cin >> a >> b;
+    cout << *b;
     cout << "\n";
-    cout << b;
+    Proces_penal *c = new Proces_penal;
+    ::cin >> *c;
     cout << "\n";
-    cout << a;
-  
+    cout << *c;
 
     // ema 14. Se dau clasele:
     // - Proces (int nrProces, string reclamant, string reclamat)

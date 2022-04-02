@@ -21,20 +21,30 @@ public:
         reclamat = x.reclamat;
         return *this;
     }
-    friend std::istream &operator>>(std::istream &os, Proces &proces)
+    virtual istream &citi(istream &os)
     {
         std::cout << "NrProces: ";
-        os >> proces.nrProces;
+        os >> nrProces;
         std::cout << "Reclamant: ";
-        os >> proces.reclamant;
+        os >> reclamant;
         std::cout << "Reclamat: ";
-        os >> proces.reclamat;
+        os >> reclamat;
 
         return os;
+    }
+    friend std::istream &operator>>(std::istream &os, Proces &proces)
+    {
+        proces.Proces::citi(os);
+        return proces.citi(os);
     };
+    virtual ostream &afis(ostream &os) const
+    {
+        os << "NrProces: " << nrProces << "\nReclamant: " << reclamant << "\nReclamat: " << reclamat << '\n';
+        return os;
+    }
     friend std::ostream &operator<<(std::ostream &os, const Proces &proces)
     {
-        os << "NrProces: " << proces.nrProces << "\nReclamant: " << proces.reclamant << "\nReclamat: " << proces.reclamat << '\n';
-        return os;
+        proces.Proces::afis(os);
+        return proces.afis(os);
     };
 };
