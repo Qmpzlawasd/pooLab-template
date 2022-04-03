@@ -11,7 +11,7 @@ ifstream cin("date.txt");
 int main()
 {
     vector<Proces *> v;
-    int n{4};
+    unsigned long n{4};
     for (size_t i = 0; i < n; i++)
     {
         Proces *a;
@@ -41,7 +41,8 @@ int main()
     ::cin >> *c;
     cout << "\n";
     cout << *c;
-
+    delete c;
+    delete b;
     // ema 14. Se dau clasele:
     // - Proces (int nrProces, string reclamant, string reclamat)
     // - Proces_civil (double dauneMorale, double dauneMateriale, int nrMartori, bool
