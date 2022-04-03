@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-using namespace std;
+// using namespace std;
 #include <iostream>
 class Proces
 {
@@ -14,10 +14,10 @@ public:
     Proces(const Proces &x) : nrProces{x.nrProces}, reclamant{x.reclamant}, reclamat{x.reclamat} {}
     friend std::ostream &operator<<(std::ostream &, const Proces &);
     friend std::istream &operator>>(std::istream &, Proces &);
-    virtual ostream &afis(ostream &) const;
-    virtual bool getStadiu() const = 0;
+    virtual std::ostream &afis(std::ostream &) const ;
+    virtual bool getStadiu() const = 0 ;
     Proces &operator=(const Proces &);
-    virtual istream &citi(istream &);
+    virtual std::istream &citi(std::istream &);
     virtual ~Proces(){};
 };
 Proces &Proces::operator=(const Proces &x)
@@ -27,7 +27,7 @@ Proces &Proces::operator=(const Proces &x)
     reclamat = x.reclamat;
     return *this;
 }
-istream &Proces::citi(istream &os)
+std::istream &Proces::citi(std::istream &os)
 {
     std::cout << "NrProces: ";
     os >> nrProces;
@@ -43,7 +43,7 @@ std::ostream &operator<<(std::ostream &os, const Proces &proces)
     proces.Proces::afis(os);
     return proces.afis(os);
 }
-ostream &Proces::afis(ostream &os) const
+std::ostream &Proces::afis(std::ostream &os) const
 {
     os << "NrProces: " << nrProces << "\nReclamant: " << reclamant << "\nReclamat: " << reclamat << '\n';
     return os;

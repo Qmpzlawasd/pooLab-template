@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include "Proces.h"
-using namespace std;
+#include <string>
+// using namespace std;
 
 class Proces_civil : public Proces
 {
@@ -15,14 +16,16 @@ private:
     static void setTaxa(const Proces_civil &);
 
 public:
-    Proces_civil(const Proces_civil &x) : dauneMorale{x.dauneMorale}, dauneMateriale{x.dauneMateriale}, nrMartori{x.nrMartori}, stadiu{x.stadiu} {}
-    Proces_civil(double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : dauneMateriale{dauneMateriale}, dauneMorale{dauneMorale}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false} { setTaxa(*this); }
+    Proces_civil(const Proces_civil &x) : Proces{x}, dauneMorale{x.dauneMorale}, dauneMateriale{x.dauneMateriale}, nrMartori{x.nrMartori}, stadiu{x.stadiu} {};
+    Proces_civil(double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{}, dauneMateriale{dauneMateriale}, dauneMorale{dauneMorale}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false} { setTaxa(*this); }
+    Proces_civil(int nrProces, std::string reclamant, std::string reclamat, double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{nrProces, reclamant, reclamat}, dauneMateriale{dauneMateriale}, dauneMorale{dauneMorale}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false} { setTaxa(*this); }; 
+    //////////////////////////////////////////////////////////////////////// ce ssa fac aci
     friend std::ostream &operator<<(std::ostream &, const Proces_civil &);
     friend std::istream &operator>>(std::istream &, Proces_civil &);
     Proces_civil &operator=(const Proces_civil &);
-    bool getStadiu() const { return stadiu; }
-    virtual ostream &afis(ostream &) const;
-    virtual istream &citi(istream &);
+    bool getStadiu() const override { return stadiu; }
+    virtual std::ostream &afis(std::ostream &) const override;
+    virtual std::istream &citi(std::istream &) override;
     static void printScumpProces();
     void setStadiu(const bool &);
     double taxaDeTimbru() const;
@@ -30,7 +33,6 @@ public:
 };
 double Proces_civil::taxaMaxima = -1;
 int Proces_civil::procesScump = -1;
-
 void Proces_civil::setStadiu(const bool &a)
 {
     stadiu = a;
@@ -49,16 +51,16 @@ std::ostream &operator<<(std::ostream &os, const Proces_civil &civil)
 }
 void Proces_civil::printScumpProces()
 {
-    cout << procesScump << "\n";
+    std::cout << procesScump << "\n";
 }
-ostream &Proces_civil::afis(ostream &os) const
+std::ostream &Proces_civil::afis(std::ostream &os) const
 {
     os << "DauneMorale: " << dauneMorale << "\nDauneMateriale: " << dauneMateriale << "\nNrMartori: "
        << nrMartori << "\nStadiu: " << stadiu << '\n';
 
     return os;
 }
-istream &Proces_civil::citi(istream &os)
+std::istream &Proces_civil::citi(std::istream &os)
 {
     std::cout << "DauneMorale: ";
     os >> dauneMorale;
@@ -77,11 +79,19 @@ double Proces_civil::taxaDeTimbru() const
 {
     return .1 * dauneMorale + .1 * dauneMateriale;
 }
-
 Proces_civil &Proces_civil::operator=(const Proces_civil &x)
 {
-    Proces &rb = (*this);
-    rb = x;
+    try
+    {
+        Proces &rb = (*this); // upcast
+        rb = x;
+    }
+    catch (std::bad_cast)
+    {
+        std::exit(1);
+    }
+
+
     dauneMorale = x.dauneMorale;
     dauneMateriale = x.dauneMateriale;
     nrMartori = x.nrMartori;
@@ -89,7 +99,6 @@ Proces_civil &Proces_civil::operator=(const Proces_civil &x)
     setTaxa(*this);
     return *this;
 }
-
 void Proces_civil::setTaxa(const Proces_civil &x)
 {
     if (taxaMaxima < x.taxaDeTimbru())

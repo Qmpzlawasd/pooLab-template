@@ -10,7 +10,8 @@ using namespace std;
 ifstream cin("date.txt");
 int main()
 {
-    vector<Proces *> v;
+    // Proces_civil *d=  new Proces;
+    vector<Proces *> judecatorie;
     unsigned long n{4};
     for (size_t i = 0; i < n; i++)
     {
@@ -24,13 +25,13 @@ int main()
 
         ::cin >> *a;
         cout << "\n";
-        v.push_back(a);
+        judecatorie.push_back(a);
     }
     for (size_t i = 0; i < n; i++)
     {
         cout << "\n";
-        cout << *v[i];
-        delete v[i];
+        cout << *judecatorie[i];
+        delete judecatorie[i];
     }
     Proces_civil *b = new Proces_civil;
     ::cin >> *b;
@@ -41,6 +42,10 @@ int main()
     ::cin >> *c;
     cout << "\n";
     cout << *c;
+    cout << "\n";
+    Proces_civil x{12, 'a', 'a'};
+    // Proces_civil x{12, "asd", 'a'};//aeroere
+    cout << x;
     delete c;
     delete b;
     // ema 14. Se dau clasele:
