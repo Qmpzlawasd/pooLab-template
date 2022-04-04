@@ -5,9 +5,9 @@
 class Proces
 {
 protected:
+    int nrProces;
     std::string reclamant;
     std::string reclamat;
-    int nrProces;
 
 public:
     Proces(int nrProces = -1, std::string reclamant = "", std::string reclamat = "") : reclamant{reclamant}, reclamat{reclamat}, nrProces{nrProces} {};
