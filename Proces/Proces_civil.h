@@ -7,8 +7,8 @@
 class Proces_civil : public Proces
 {
 private:
-    bool stadiu;
     int nrMartori;
+    bool stadiu;
     double dauneMorale;
     double dauneMateriale;
     static int procesScump;
@@ -16,9 +16,9 @@ private:
     static void setTaxa(const Proces_civil &);
 
 public:
-    Proces_civil(const Proces_civil &x) : Proces{x}, dauneMorale{x.dauneMorale}, dauneMateriale{x.dauneMateriale}, nrMartori{x.nrMartori}, stadiu{x.stadiu} {};
-    Proces_civil(double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{}, dauneMateriale{dauneMateriale}, dauneMorale{dauneMorale}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false} { setTaxa(*this); }
-    Proces_civil(int nrProces, std::string reclamant, std::string reclamat, double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{nrProces, reclamant, reclamat}, dauneMateriale{dauneMateriale}, dauneMorale{dauneMorale}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false} { setTaxa(*this); }; 
+    Proces_civil(const Proces_civil &x) : Proces{x}, nrMartori{nrMartori}, stadiu{stadiu}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} {};
+    Proces_civil(double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} { setTaxa(*this); }
+    Proces_civil(int nrProces, std::string reclamant, std::string reclamat, double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{nrProces, reclamant, reclamat}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} { setTaxa(*this); };
     //////////////////////////////////////////////////////////////////////// ce ssa fac aci
     friend std::ostream &operator<<(std::ostream &, const Proces_civil &);
     friend std::istream &operator>>(std::istream &, Proces_civil &);
@@ -51,7 +51,7 @@ std::ostream &operator<<(std::ostream &os, const Proces_civil &civil)
 }
 void Proces_civil::printScumpProces()
 {
-    std::cout << procesScump << "\n";
+    std::cout << procesScump ;
 }
 std::ostream &Proces_civil::afis(std::ostream &os) const
 {
@@ -90,7 +90,6 @@ Proces_civil &Proces_civil::operator=(const Proces_civil &x)
     {
         std::exit(1);
     }
-
 
     dauneMorale = x.dauneMorale;
     dauneMateriale = x.dauneMateriale;

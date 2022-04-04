@@ -1,51 +1,101 @@
-#include <ostream>
+#include <iostream>
 #include <fstream>
-#include <memory>
 #include <vector>
 #include "Proces/Proces.h"
 #include "Proces/Proces_civil.h"
 #include "Proces/Proces_penal.h"
 using namespace std;
-// #include <iostream>
-ifstream cin("date.txt");
 int main()
 {
-    // Proces_civil *d=  new Proces;
+    std::ifstream cin("date.txt");
     vector<Proces *> judecatorie;
     unsigned long n{4};
-    for (size_t i = 0; i < n; i++)
+    int coma{-12};
+    while (coma)
     {
-        Proces *a;
-        if (i & 1)
-        {
-            a = new Proces_civil;
-        }
-        else
-            a = new Proces_penal;
+        std::cout
+            << "\n------------------Meniu------------------\nTasta 1: Citeste Procese \nTasta 2: Afiseaza toate procesele \nTasta 3: Zi care e cel mai scump proces \nTasta 4: Da stadiul unui proces \nTasta 5: exit\n Tasta : ";
 
-        ::cin >> *a;
-        cout << "\n";
-        judecatorie.push_back(a);
+        cin >> coma;
+        switch (coma)
+        {
+        case 1:
+            cin >> n;
+            for (size_t i = 0; i < n; i++)
+            {
+                Proces *a;
+                if (i & 1)
+                {
+                    cout << "\nProces civil::\n";
+                    a = new Proces_civil;
+                }
+                else
+                {
+                    cout << "\nProces penal::\n";
+                    a = new Proces_penal;
+                }
+                cin >> *a;
+                std::cout << "\n";
+                judecatorie.push_back(a);
+            }
+            break;
+        case 2:
+            for (const auto &c : judecatorie)
+            {
+                std::cout << "\n";
+                std::cout << *c;
+            }
+            break;
+        case 3:
+            Proces_civil::printScumpProces();
+            cout << "\n";
+
+            break;
+        case 4:
+            cout << "Care proces? ";
+            cin >> coma;
+            for (const auto &c : judecatorie)
+            {
+                if (c->getNrProces() == coma)
+                {
+                    cout << "Stadiul este ";
+                    cout << c->getStadiu();
+                    cout << '\n';
+                    break;
+                }
+            }
+
+            break;
+        case 5:
+
+            for (size_t i = 0; i < n; i++)
+            {
+                delete judecatorie[i];
+            }
+            exit(0);
+        default:
+
+            for (size_t i = 0; i < n; i++)
+            {
+                delete judecatorie[i];
+            }
+            exit(0);
+        }
     }
-    for (size_t i = 0; i < n; i++)
-    {
-        cout << "\n";
-        cout << *judecatorie[i];
-        delete judecatorie[i];
-    }
+
     Proces_civil *b = new Proces_civil;
     ::cin >> *b;
-    cout << "\n";
-    cout << *b;
-    cout << "\n";
+    std::cout << "\n";
+    std::cout << *b;
+    std::cout << "\n";
     Proces_penal *c = new Proces_penal;
     ::cin >> *c;
-    cout << "\n";
-    cout << *c;
-    cout << "\n";
+    std::cout << "\n";
+    std::cout << *c;
+    std::cout << "\n";
     Proces_civil x{12, 'a', 'a'};
     // Proces_civil x{12, "asd", 'a'};//aeroere
-    cout << x;
+    std::cout << x;
     delete c;
     delete b;
     // ema 14. Se dau clasele:
