@@ -42,9 +42,10 @@ int main()
 
             break;
         case 2:
-            for (const auto  &c : judecatorie)
+            // for (const auto  &c : judecatorie)
+            for (size_t i = 0; i < judecatorie.size(); i++)
             {
-                std::cout <<"\n"<< (*c);
+                std::cout <<"\n"<< (*judecatorie[i]);
             }
             break;
         case 3:
@@ -57,21 +58,21 @@ int main()
             cout << "Care proces? ";
             cin >> coma;
 
-            // auto rez = std::find_if(judecatorie.begin(), judecatorie.end(), [&](const auto &c)
-            //                         { return c->getNrProces() == coma; });
+            auto rez = std::find_if(judecatorie.begin(), judecatorie.end(), [&](const auto &c)
+                                    { return c->getNrProces() == coma; });
 
-            // if (rez != judecatorie.end())
-            // {
-            //     cout << "Stadiul este ";
-            //     cout << (*rez)->getStadiu();
-            //     cout << '\n';
-            // }
+            if (rez != judecatorie.end())
+            {
+                cout << "Stadiul este ";
+                cout << (*rez)->getStadiu();
+                cout << '\n';
+            }
 
             break;
         }
         case 5:
 
-            for (size_t i = 0; i < n; i++)
+            for (size_t i = 0; i < judecatorie.size(); i++)
             {
                 delete judecatorie[i];
             }
@@ -79,7 +80,7 @@ int main()
             break;
         default:
 
-            for (size_t i = 0; i < n; i++)
+            for (size_t i = 0; i < judecatorie.size(); i++)
             {
                 delete judecatorie[i];
             }
