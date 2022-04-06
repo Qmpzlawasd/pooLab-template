@@ -73,21 +73,18 @@ int main()
         }
         case 5:
 
-            //     for (size_t i = 0; i < judecatorie.size(); i++)
-            //     {
-            //         delete judecatorie[i];
-            //     }
-            //     exit(0);
-            //     break;
-            // default:
+                for (size_t i = 0; i < judecatorie.size(); i++)
+                {
+                    delete judecatorie[i];
+                }
+                exit(0);
+                break;
+            default:
 
-            //     for (size_t i = 0; i < judecatorie.size(); i++)
-            //     {
-            //         delete judecatorie[i];
-            //     }
-            exit(0);
-            break;
-        default:
+                for (size_t i = 0; i < judecatorie.size(); i++)
+                {
+                    delete judecatorie[i];
+                }
             exit(0);
             break;
         }
