@@ -11,7 +11,7 @@ private:
 
 public:
     Proces_penal(int dovezi = 0, bool stadiu = 0) : Proces{}, dovezi{dovezi}, stadiu{(dovezi > 25) ? true : false} {};
-    Proces_penal(int nrProces, std::string reclamant, std::string reclamat, int dovezi = 0, bool stadiu = 0) : Proces{nrProces, reclamant, reclamat}, dovezi{dovezi}, stadiu{(dovezi > 25) ? true : false} {};
+    Proces_penal(int nrProces, std::string reclamant, std::string reclamat, int dovezi = 0, bool stadiu = 0) : Proces{nrProces, std::move(reclamant), std::move(reclamat)}, dovezi{dovezi}, stadiu{(dovezi > 25) ? true : false} {};
     Proces_penal(const Proces_penal &x) : Proces{x}, dovezi{x.dovezi}, stadiu{x.stadiu} {};
     friend std::istream &operator>>(std::istream &, Proces_penal &);
     friend std::ostream &operator<<(std::ostream &, const Proces_penal &);
@@ -58,11 +58,10 @@ Proces_penal &Proces_penal::operator=(const Proces_penal &x)
         Proces &rb = (*this); // upcast
         rb = x;
     }
-    catch (std::bad_cast)
+    catch (std::bad_cast &)
     {
         std::exit(1);
     }
-
     dovezi = x.dovezi;
     stadiu = x.stadiu;
     return *this;

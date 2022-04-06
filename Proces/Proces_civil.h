@@ -18,7 +18,7 @@ private:
 public:
     Proces_civil(const Proces_civil &x) : Proces{x}, nrMartori{nrMartori}, stadiu{stadiu}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} {};
     Proces_civil(double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} { setTaxa(*this); }
-    Proces_civil(int nrProces, std::string reclamant, std::string reclamat, double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{nrProces, reclamant, reclamat}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} { setTaxa(*this); };
+    Proces_civil(int nrProces, std::string reclamant, std::string reclamat, double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{nrProces, std::move(reclamant), std::move(reclamat)}, nrMartori{nrMartori}, stadiu{  (nrMartori > 5 ) ? true : false}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} { setTaxa(*this); };
     //////////////////////////////////////////////////////////////////////// ce ssa fac aci
     friend std::ostream &operator<<(std::ostream &, const Proces_civil &);
     friend std::istream &operator>>(std::istream &, Proces_civil &);
@@ -31,13 +31,12 @@ public:
     double taxaDeTimbru() const;
     ~Proces_civil(){};
 };
-double Proces_civil::taxaMaxima = -1;
 int Proces_civil::procesScump = -1;
+double Proces_civil::taxaMaxima = -1;
 void Proces_civil::setStadiu(const bool &a)
 {
     stadiu = a;
 }
-
 std::istream &operator>>(std::istream &os, Proces_civil &civil)
 {
 
