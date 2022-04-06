@@ -8,7 +8,7 @@
 using namespace std;
 int main()
 {
-    std::ifstream cin("date.txt");
+    // std::ifstream cin("date.txt");
     vector<Proces *> judecatorie;
     unsigned long n{4};
     int coma{-12};
@@ -43,12 +43,11 @@ int main()
             break;
         case 2:
             // for (const auto  &c : judecatorie)
-            for (auto it = begin(judecatorie); it != end(judecatorie); ++it)
+            for (auto it = judecatorie.begin(); it != judecatorie.end(); ++it)
             // {
             // }
             {
-                std::cout << "\n";
-                std::cout << *(*it);
+                std::cout <<"\n"<< *(*it);
             }
             break;
         case 3:
