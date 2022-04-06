@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include <vector>
 #include "Proces/Proces.h"
 #include "Proces/Proces_civil.h"
@@ -7,7 +8,7 @@
 using namespace std;
 int main()
 {
-    // std::ifstream cin("date.txt");
+    std::ifstream cin("date.txt");
     vector<Proces *> judecatorie;
     unsigned long n{4};
     int coma{-12};
@@ -41,7 +42,7 @@ int main()
 
             break;
         case 2:
-            for (const auto &c : judecatorie)
+            for (auto const &c : judecatorie)
             {
                 std::cout << "\n";
                 std::cout << *c;
@@ -53,20 +54,23 @@ int main()
 
             break;
         case 4:
-            cout << "Care proces? ";
-            cin >> coma;
-            for (auto const &c : judecatorie)
+            
             {
-                if (c->getNrProces() == coma)
+                cout << "Care proces? ";
+                cin >> coma;
+
+                auto rez = std::find_if(judecatorie.begin(), judecatorie.end(), [&](const auto &c)
+                                        { return c->getNrProces() == coma; });
+
+                if (rez != judecatorie.end())
                 {
                     cout << "Stadiul este ";
-                    cout << c->getStadiu();
+                    cout << (*rez)->getStadiu();
                     cout << '\n';
-                    break;
                 }
-            }
 
-            break;
+                break;
+            }
         case 5:
 
             for (size_t i = 0; i < n; i++)
@@ -74,6 +78,7 @@ int main()
                 delete judecatorie[i];
             }
             exit(0);
+            break;
         default:
 
             for (size_t i = 0; i < n; i++)
@@ -84,31 +89,4 @@ int main()
         }
     }
 
-    // Proces_civil *b = new Proces_civil;
-    // ::cin >> *b;
-    // std::cout << "\n";
-    // std::cout << *b;
-    // std::cout << "\n";
-    // Proces_penal *c = new Proces_penal;
-    // ::cin >> *c;
-    // std::cout << "\n";
-    // std::cout << *c;
-    // std::cout << "\n";
-    // Proces_civil x{12, 'a', 'a'};
-    // // Proces_civil x{12, "asd", 'a'};//aeroere
-    // std::cout << x;
-    // delete c;
-    // delete b;
-    // ema 14. Se dau clasele:
-    // - Proces (int nrProces, string reclamant, string reclamat)
-    // - Proces_civil (double dauneMorale, double dauneMateriale, int nrMartori, bool
-    // stadiu)
-    // - Proces_penal (int dovezi, bool stadiu).
-    // Sa se faca verificarile in constructori si la citire astfel: daca nrMartori > 5 automat
-    // stadiul este 1, altfel este 0. Daca la un proces penal numarul dovezilor > 25 atunci
-    // stadiul este 1.
-    // Sa se poata modifica stadiul unui proces si sa se creeze o metoda de calculare a taxei
-    // de timbru pentru fiecare proces civil. Taxa de timbru = 10/100 * dauneMorale + 10% *
-    // dauneMateriale.
-    // Sa se afle procesul care are taxa de timbru cea mai mare.
 }
