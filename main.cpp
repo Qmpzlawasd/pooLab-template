@@ -45,7 +45,8 @@ int main()
             // for (const auto  &c : judecatorie)
             for (size_t i = 0; i < judecatorie.size(); i++)
             {
-                std::cout <<"\n"<< (*judecatorie[i]);
+                std::cout << "\n"
+                          << (*judecatorie[i]);
             }
             break;
         case 3:
@@ -72,19 +73,23 @@ int main()
         }
         case 5:
 
-            for (size_t i = 0; i < judecatorie.size(); i++)
-            {
-                delete judecatorie[i];
-            }
+            //     for (size_t i = 0; i < judecatorie.size(); i++)
+            //     {
+            //         delete judecatorie[i];
+            //     }
+            //     exit(0);
+            //     break;
+            // default:
+
+            //     for (size_t i = 0; i < judecatorie.size(); i++)
+            //     {
+            //         delete judecatorie[i];
+            //     }
             exit(0);
             break;
         default:
-
-            for (size_t i = 0; i < judecatorie.size(); i++)
-            {
-                delete judecatorie[i];
-            }
             exit(0);
+            break;
         }
     }
 }
