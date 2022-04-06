@@ -38,9 +38,9 @@ public:
 };
 int Proces_civil::procesScump = -1;
 double Proces_civil::taxaMaxima = -1;
-void Proces_civil::setStadiu(const bool &a)
+void Proces_civil::setStadiu(const bool &st)
 {
-    stadiu = a;
+    stadiu = st;
 }
 std::istream &operator>>(std::istream &os, Proces_civil &civil)
 {
@@ -116,23 +116,23 @@ double Proces_civil::getDauneMorale() const
 {
     return dauneMorale;
 }
-void Proces_civil::setDauneMorale(const double &dauneMorale)
+void Proces_civil::setDauneMorale(const double &dauneMoralex)
 {
-    Proces_civil::dauneMorale = dauneMorale;
+    Proces_civil::dauneMorale = dauneMoralex;
 }
 double Proces_civil::getDauneMateriale() const
 {
     return dauneMateriale;
 }
-void Proces_civil::setDauneMateriale(const double &dauneMateriale)
+void Proces_civil::setDauneMateriale(const double &dauneMaterialex)
 {
-    Proces_civil::dauneMateriale = dauneMateriale;
+    Proces_civil::dauneMateriale = dauneMaterialex;
 }
 int Proces_civil::getNrMartori() const
 {
     return nrMartori;
 }
-void Proces_civil::setNrMartori(const int &nrMartori)
+void Proces_civil::setNrMartori(const int &nrMartorix)
 {
-    Proces_civil::nrMartori = nrMartori;
+    Proces_civil::nrMartori = nrMartorix;
 }

@@ -73,8 +73,8 @@ int Proces_penal::getDovezi() const
 {
     return dovezi;
 }
-void Proces_penal::setDovezi(const int& dovezi)
+void Proces_penal::setDovezi(const int& dovezix)
 {
-    Proces_penal::dovezi = dovezi;
+    Proces_penal::dovezi = dovezix;
 }
 

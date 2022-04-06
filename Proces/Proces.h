@@ -58,19 +58,19 @@ std::istream &operator>>(std::istream &os, Proces &proces)
     proces.Proces::citi(os);
     return proces.citi(os);
 }
-void Proces::setNrProces(const int &nrProces)
+void Proces::setNrProces(const int &nrProcesx)
 {
-    Proces::nrProces = nrProces;
+    Proces::nrProces = nrProcesx;
 }
 const std::string &Proces::getReclamant()
 {
     return reclamant;
 }
-void Proces::setReclamat(const std::string &reclamat)
+void Proces::setReclamat(const std::string &reclamatx)
 {
-    Proces::reclamat = reclamat;
+    Proces::reclamat = reclamatx;
 }
-void Proces::setReclamant(const std::string &reclamant)
+void Proces::setReclamant(const std::string &reclamantx)
 {
-    Proces::reclamant = reclamant;
+    Proces::reclamant = reclamantx;
 }
