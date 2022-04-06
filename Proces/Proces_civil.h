@@ -16,10 +16,10 @@ private:
     static void setTaxa(const Proces_civil &);
 
 public:
-    Proces_civil(const Proces_civil &x) : Proces{x}, nrMartori{nrMartori}, stadiu{stadiu}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} {};
+    Proces_civil(const Proces_civil &x) : Proces{x}, nrMartori{x.nrMartori}, stadiu{x.stadiu}, dauneMorale{x.dauneMorale}, dauneMateriale{x.dauneMateriale} {};
     Proces_civil(double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{}, nrMartori{nrMartori}, stadiu{(nrMartori > 5) ? true : false}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} { setTaxa(*this); }
     Proces_civil(int nrProces, std::string reclamant, std::string reclamat, double dauneMorale = 0, double dauneMateriale = 0, int nrMartori = 0, bool stadiu = 0) : Proces{nrProces, std::move(reclamant), std::move(reclamat)}, nrMartori{nrMartori}, stadiu{  (nrMartori > 5 ) ? true : false}, dauneMorale{dauneMorale}, dauneMateriale{dauneMateriale} { setTaxa(*this); };
-    //////////////////////////////////////////////////////////////////////// ce ssa fac aci
+    //////////////////////////////////////////////////////////////////////// 
     friend std::ostream &operator<<(std::ostream &, const Proces_civil &);
     friend std::istream &operator>>(std::istream &, Proces_civil &);
     Proces_civil &operator=(const Proces_civil &);
@@ -85,7 +85,7 @@ Proces_civil &Proces_civil::operator=(const Proces_civil &x)
         Proces &rb = (*this); // upcast
         rb = x;
     }
-    catch (std::bad_cast)
+    catch (std::bad_cast&)
     {
         std::exit(1);
     }

@@ -13,12 +13,12 @@ public:
     Proces_penal(int dovezi = 0, bool stadiu = 0) : Proces{}, dovezi{dovezi}, stadiu{(dovezi > 25) ? true : false} {};
     Proces_penal(int nrProces, std::string reclamant, std::string reclamat, int dovezi = 0, bool stadiu = 0) : Proces{nrProces, std::move(reclamant), std::move(reclamat)}, dovezi{dovezi}, stadiu{(dovezi > 25) ? true : false} {};
     Proces_penal(const Proces_penal &x) : Proces{x}, dovezi{x.dovezi}, stadiu{x.stadiu} {};
-    friend std::istream &operator>>(std::istream &, Proces_penal &);
     friend std::ostream &operator<<(std::ostream &, const Proces_penal &);
-    Proces_penal &operator=(const Proces_penal &);
-    bool getStadiu()   const override { return stadiu; };
+    friend std::istream &operator>>(std::istream &, Proces_penal &);
     virtual std::ostream &afis(std::ostream &) const override;
+    bool getStadiu()  const override { return stadiu; };
     virtual std::istream &citi(std::istream &)override;
+    Proces_penal &operator=(const Proces_penal &);
     void setStadiu(const bool &);
     ~Proces_penal(){};
 };

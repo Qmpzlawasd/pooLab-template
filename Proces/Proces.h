@@ -16,9 +16,9 @@ public:
     friend std::istream &operator>>(std::istream &, Proces &);
     virtual std::ostream &afis(std::ostream &) const;
     int getNrProces() const { return nrProces; };
+    virtual std::istream &citi(std::istream &);
     virtual bool getStadiu() const = 0;
     Proces &operator=(const Proces &);
-    virtual std::istream &citi(std::istream &);
     virtual ~Proces(){};
 };
 Proces &Proces::operator=(const Proces &x)
