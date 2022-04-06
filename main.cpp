@@ -8,7 +8,7 @@
 using namespace std;
 int main()
 {
-    // std::ifstream cin("date.txt");
+    std::ifstream cin("date.txt");
     vector<Proces *> judecatorie;
     unsigned long n{4};
     int coma{-12};
@@ -42,12 +42,9 @@ int main()
 
             break;
         case 2:
-            // for (const auto  &c : judecatorie)
-            for (auto it = judecatorie.begin(); it != judecatorie.end(); ++it)
-            // {
-            // }
+            for (const auto  &c : judecatorie)
             {
-                std::cout <<"\n"<< *(*it);
+                std::cout <<"\n"<< (*c);
             }
             break;
         case 3:
@@ -56,20 +53,19 @@ int main()
 
             break;
         case 4:
-
         {
             cout << "Care proces? ";
             cin >> coma;
 
-            auto rez = std::find_if(judecatorie.begin(), judecatorie.end(), [&](const auto &c)
-                                    { return c->getNrProces() == coma; });
+            // auto rez = std::find_if(judecatorie.begin(), judecatorie.end(), [&](const auto &c)
+            //                         { return c->getNrProces() == coma; });
 
-            if (rez != judecatorie.end())
-            {
-                cout << "Stadiul este ";
-                cout << (*rez)->getStadiu();
-                cout << '\n';
-            }
+            // if (rez != judecatorie.end())
+            // {
+            //     cout << "Stadiul este ";
+            //     cout << (*rez)->getStadiu();
+            //     cout << '\n';
+            // }
 
             break;
         }
