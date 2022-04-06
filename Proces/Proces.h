@@ -17,8 +17,12 @@ public:
     virtual std::ostream &afis(std::ostream &) const;
     int getNrProces() const { return nrProces; };
     virtual std::istream &citi(std::istream &);
+    void setReclamant(const std::string &);
+    void setReclamat(const std::string &);
     virtual bool getStadiu() const = 0;
+    const std::string &getReclamant();
     Proces &operator=(const Proces &);
+    void setNrProces(const int &);
     virtual ~Proces(){};
 };
 Proces &Proces::operator=(const Proces &x)
@@ -53,4 +57,20 @@ std::istream &operator>>(std::istream &os, Proces &proces)
 {
     proces.Proces::citi(os);
     return proces.citi(os);
+}
+void Proces::setNrProces(const int &nrProces)
+{
+    Proces::nrProces = nrProces;
+}
+const std::string &Proces::getReclamant()
+{
+    return reclamant;
+}
+void Proces::setReclamat(const std::string &reclamat)
+{
+    Proces::reclamat = reclamat;
+}
+void Proces::setReclamant(const std::string &reclamant)
+{
+    Proces::reclamant = reclamant;
 }

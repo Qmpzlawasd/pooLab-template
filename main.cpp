@@ -38,6 +38,7 @@ int main()
                 std::cout << "\n";
                 judecatorie.push_back(a);
             }
+
             break;
         case 2:
             for (const auto &c : judecatorie)
@@ -83,21 +84,21 @@ int main()
         }
     }
 
-    Proces_civil *b = new Proces_civil;
-    ::cin >> *b;
-    std::cout << "\n";
-    std::cout << *b;
-    std::cout << "\n";
-    Proces_penal *c = new Proces_penal;
-    ::cin >> *c;
-    std::cout << "\n";
-    std::cout << *c;
-    std::cout << "\n";
-    Proces_civil x{12, 'a', 'a'};
-    // Proces_civil x{12, "asd", 'a'};//aeroere
-    std::cout << x;
-    delete c;
-    delete b;
+    // Proces_civil *b = new Proces_civil;
+    // ::cin >> *b;
+    // std::cout << "\n";
+    // std::cout << *b;
+    // std::cout << "\n";
+    // Proces_penal *c = new Proces_penal;
+    // ::cin >> *c;
+    // std::cout << "\n";
+    // std::cout << *c;
+    // std::cout << "\n";
+    // Proces_civil x{12, 'a', 'a'};
+    // // Proces_civil x{12, "asd", 'a'};//aeroere
+    // std::cout << x;
+    // delete c;
+    // delete b;
     // ema 14. Se dau clasele:
     // - Proces (int nrProces, string reclamant, string reclamat)
     // - Proces_civil (double dauneMorale, double dauneMateriale, int nrMartori, bool
