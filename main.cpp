@@ -42,10 +42,13 @@ int main()
 
             break;
         case 2:
-            for (auto const &c : judecatorie)
+            // for (const auto  &c : judecatorie)
+            for (auto it = begin(judecatorie); it != end(judecatorie); ++it)
+            // {
+            // }
             {
                 std::cout << "\n";
-                std::cout << *c;
+                std::cout << *(*it);
             }
             break;
         case 3:
@@ -54,23 +57,23 @@ int main()
 
             break;
         case 4:
-            
+
+        {
+            cout << "Care proces? ";
+            cin >> coma;
+
+            auto rez = std::find_if(judecatorie.begin(), judecatorie.end(), [&](const auto &c)
+                                    { return c->getNrProces() == coma; });
+
+            if (rez != judecatorie.end())
             {
-                cout << "Care proces? ";
-                cin >> coma;
-
-                auto rez = std::find_if(judecatorie.begin(), judecatorie.end(), [&](const auto &c)
-                                        { return c->getNrProces() == coma; });
-
-                if (rez != judecatorie.end())
-                {
-                    cout << "Stadiul este ";
-                    cout << (*rez)->getStadiu();
-                    cout << '\n';
-                }
-
-                break;
+                cout << "Stadiul este ";
+                cout << (*rez)->getStadiu();
+                cout << '\n';
             }
+
+            break;
+        }
         case 5:
 
             for (size_t i = 0; i < n; i++)
@@ -88,5 +91,4 @@ int main()
             exit(0);
         }
     }
-
 }
