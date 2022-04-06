@@ -10,7 +10,7 @@ protected:
     std::string reclamat;
 
 public:
-    Proces(int nrProces = -1, std::string reclamant = "", std::string reclamat = "") : nrProces{nrProces}, reclamant{reclamant}, reclamat{reclamat} {};
+    Proces(int nrProces = -1, const std::string &reclamant = "", const std::string &reclamat = "") : nrProces{nrProces}, reclamant{reclamant}, reclamat{reclamat} {};
     Proces(const Proces &x) : nrProces{x.nrProces}, reclamant{x.reclamant}, reclamat{x.reclamat} {}
     friend std::ostream &operator<<(std::ostream &, const Proces &);
     friend std::istream &operator>>(std::istream &, Proces &);

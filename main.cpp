@@ -55,7 +55,7 @@ int main()
         case 4:
             cout << "Care proces? ";
             cin >> coma;
-            for (const auto &c : judecatorie)
+            for (auto const &c : judecatorie)
             {
                 if (c->getNrProces() == coma)
                 {
