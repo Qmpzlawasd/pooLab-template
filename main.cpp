@@ -8,11 +8,11 @@
 using namespace std;
 int main()
 {
-    // std::ifstream cin("date.txt");
+    ifstream cin("date.txt");
     vector<Proces *> judecatorie;
-    unsigned long n{4};
+    unsigned long n{4},acas{1};
     int coma{-12};
-    while (coma)
+    while (acas)
     {
         std::cout
             << "\n------------------Meniu------------------\nTasta 1: Citeste Procese \nTasta 2: Afiseaza toate procesele \nTasta 3: Zi care e cel mai scump proces \nTasta 4: Da stadiul unui proces \nTasta 5: exit\n Tasta : ";
@@ -77,7 +77,7 @@ int main()
                 {
                     delete judecatorie[i];
                 }
-                exit(0);
+                acas=0;
                 break;
             default:
 
@@ -85,7 +85,8 @@ int main()
                 {
                     delete judecatorie[i];
                 }
-            exit(0);
+                acas=0;
+
             break;
         }
     }
