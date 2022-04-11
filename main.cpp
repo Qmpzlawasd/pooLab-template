@@ -14,8 +14,6 @@ int main()
     int coma{-12};
     while (acas)
     {
-        Proces_civil aa{};
-        cout << aa;
         std::cout
             << "\n------------------Meniu------------------\nTasta 1: Citeste Procese \nTasta 2: Afiseaza toate procesele \nTasta 3: Zi care e cel mai scump proces \nTasta 4: Da stadiul unui proces \nTasta 5: exit\n Tasta : ";
 
