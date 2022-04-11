@@ -62,7 +62,7 @@ void Proces_civil::printScumpProces()
             throw -1;
         }
     }
-    catch (const int &e)
+    catch (const int &)
     {
         std::cout << " nu avem rocese civile in vizor";
         return;
