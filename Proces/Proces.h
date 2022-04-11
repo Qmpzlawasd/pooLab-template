@@ -67,7 +67,7 @@ void Proces::setNrProces(const int &nrProcesx)
 {
     Proces::nrProces = nrProcesx;
 }
-bool Proces::eNumar(const std::string &str)const
+bool Proces::eNumar(const std::string &str) const
 {
     for (const char &c : str)
     {
