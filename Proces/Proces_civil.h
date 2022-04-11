@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Proces.h"
+#include "InvalidData.h"
 #include <string>
 // using namespace std;
 
@@ -54,6 +55,18 @@ std::ostream &operator<<(std::ostream &os, const Proces_civil &civil)
 }
 void Proces_civil::printScumpProces()
 {
+    try
+    {
+        if (procesScump == -1)
+        {
+            throw -1;
+        }
+    }
+    catch (const int &e)
+    {
+        std::cout << " nu avem rocese civile in vizor";
+        return;
+    }
     std::cout << procesScump;
 }
 std::ostream &Proces_civil::afis(std::ostream &os) const
@@ -65,12 +78,31 @@ std::ostream &Proces_civil::afis(std::ostream &os) const
 }
 std::istream &Proces_civil::citi(std::istream &os)
 {
-    std::cout << "DauneMorale: ";
-    os >> dauneMorale;
-    std::cout << "DauneMateriale: ";
-    os >> dauneMateriale;
-    std::cout << "NrMartori: ";
-    os >> nrMartori;
+    try
+    {
+        std::string a, b, c;
+        std::cout << "DauneMorale: ";
+        os >> a;
+        std::cout << "DauneMateriale: ";
+        os >> b;
+        std::cout << "NrMartori: ";
+        os >> c;
+
+        if (eNumar(a) and eNumar(b) and eNumar(c))
+        {
+            dauneMorale = atoi(a.c_str());
+            dauneMateriale = atoi(b.c_str());
+            nrMartori = atoi(c.c_str());
+        }
+        else
+            throw InvalidData{};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+        exit(0);
+    }
+
     stadiu = (nrMartori > 5) ? true : false;
     setTaxa(*this);
 
@@ -119,6 +151,7 @@ double Proces_civil::getDauneMorale() const
 void Proces_civil::setDauneMorale(const double &dauneMoralex)
 {
     Proces_civil::dauneMorale = dauneMoralex;
+    setTaxa(*this);
 }
 double Proces_civil::getDauneMateriale() const
 {
@@ -127,6 +160,7 @@ double Proces_civil::getDauneMateriale() const
 void Proces_civil::setDauneMateriale(const double &dauneMaterialex)
 {
     Proces_civil::dauneMateriale = dauneMaterialex;
+    setTaxa(*this);
 }
 int Proces_civil::getNrMartori() const
 {

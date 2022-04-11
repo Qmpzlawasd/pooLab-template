@@ -1,4 +1,6 @@
 #pragma once
+#include "InvalidData.h"
+
 // using namespace std;
 #include <iostream>
 #include <string>
@@ -41,7 +43,21 @@ std::ostream &operator<<(std::ostream &os, const Proces_penal &penal)
 std::istream &Proces_penal::citi(std::istream &os)
 {
     std::cout << "NrDovezi: ";
-    os >> dovezi;
+    try
+    {
+        std::string a;
+        os >> a;
+        if (eNumar(a))
+        {
+            dovezi = atoi(a.c_str());
+        }else throw InvalidData{};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+        exit(0);
+    }
+
     stadiu = (dovezi > 25) ? true : false;
     return os;
 }
@@ -73,8 +89,7 @@ int Proces_penal::getDovezi() const
 {
     return dovezi;
 }
-void Proces_penal::setDovezi(const int& dovezix)
+void Proces_penal::setDovezi(const int &dovezix)
 {
     Proces_penal::dovezi = dovezix;
 }
-

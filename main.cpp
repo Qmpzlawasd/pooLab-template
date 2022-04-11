@@ -4,13 +4,14 @@
 #include <vector>
 #include "Proces/Proces.h"
 #include "Proces/Proces_civil.h"
+#include "Proces/InvalidData.h"
 #include "Proces/Proces_penal.h"
 using namespace std;
 int main()
 {
     // ifstream cin("date.txt");
     vector<Proces *> judecatorie;
-    unsigned long n{4},acas{1};
+    unsigned long n{4}, acas{1};
     int coma{-12};
     while (acas)
     {
@@ -21,6 +22,7 @@ int main()
         switch (coma)
         {
         case 1:
+            cout << "cate procese? ";
             cin >> n;
             for (size_t i = 0; i < n; i++)
             {
@@ -42,7 +44,6 @@ int main()
 
             break;
         case 2:
-            // for (const auto  &c : judecatorie)
             for (size_t i = 0; i < judecatorie.size(); i++)
             {
                 std::cout << "\n"
@@ -68,24 +69,26 @@ int main()
                 cout << (*rez)->getStadiu();
                 cout << '\n';
             }
+            else
+                cout << "nu s-a gasit";
 
             break;
         }
         case 5:
 
-                for (size_t i = 0; i < judecatorie.size(); i++)
-                {
-                    delete judecatorie[i];
-                }
-                acas=0;
-                break;
-            default:
+            for (size_t i = 0; i < judecatorie.size(); i++)
+            {
+                delete judecatorie[i];
+            }
+            acas = 0;
+            break;
+        default:
 
-                for (size_t i = 0; i < judecatorie.size(); i++)
-                {
-                    delete judecatorie[i];
-                }
-                acas=0;
+            for (size_t i = 0; i < judecatorie.size(); i++)
+            {
+                delete judecatorie[i];
+            }
+            acas = 0;
 
             break;
         }

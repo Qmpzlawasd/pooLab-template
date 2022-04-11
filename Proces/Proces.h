@@ -1,4 +1,5 @@
 #pragma once
+#include "InvalidData.h"
 #include <string>
 // using namespace std;
 #include <iostream>
@@ -17,6 +18,7 @@ public:
     virtual std::ostream &afis(std::ostream &) const;
     int getNrProces() const { return nrProces; };
     virtual std::istream &citi(std::istream &);
+    bool eNumar(const std::string &) const;
     void setReclamant(const std::string &);
     void setReclamat(const std::string &);
     virtual bool getStadiu() const = 0;
@@ -34,8 +36,24 @@ Proces &Proces::operator=(const Proces &x)
 }
 std::istream &Proces::citi(std::istream &os)
 {
-    std::cout << "NrProces: ";
-    os >> nrProces;
+    try
+    {
+        std::cout << "NrProces: ";
+        std::string a;
+        os >> a;
+        if (eNumar(a))
+        {
+            nrProces = atoi(a.c_str());
+        }
+        else
+            throw InvalidData{};
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+        exit(0);
+    }
+
     std::cout << "Reclamant: ";
     os >> reclamant;
     std::cout << "Reclamat: ";
@@ -73,4 +91,13 @@ void Proces::setReclamat(const std::string &reclamatx)
 void Proces::setReclamant(const std::string &reclamantx)
 {
     Proces::reclamant = reclamantx;
+}
+bool Proces::eNumar(const std::string &str)const
+{
+    for (const char &c : str)
+    {
+        if (std::isdigit(c) == 0)
+            return false;
+    }
+    return true;
 }
