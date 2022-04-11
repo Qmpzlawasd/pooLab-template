@@ -4,7 +4,6 @@
 #include <vector>
 #include "Proces/Proces.h"
 #include "Proces/Proces_civil.h"
-#include "Proces/InvalidData.h"
 #include "Proces/Proces_penal.h"
 using namespace std;
 int main()
@@ -51,6 +50,7 @@ int main()
             }
             break;
         case 3:
+
             Proces_civil::printScumpProces();
             cout << "\n";
 
@@ -81,6 +81,7 @@ int main()
                 delete judecatorie[i];
             }
             acas = 0;
+            judecatorie.clear();
             break;
         default:
 
@@ -89,6 +90,7 @@ int main()
                 delete judecatorie[i];
             }
             acas = 0;
+            judecatorie.clear();
 
             break;
         }

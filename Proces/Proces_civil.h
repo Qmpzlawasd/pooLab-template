@@ -2,9 +2,6 @@
 #include <iostream>
 #include "Proces.h"
 #include "InvalidData.h"
-#include <string>
-// using namespace std;
-
 class Proces_civil : public Proces
 {
 private:
@@ -39,20 +36,6 @@ public:
 };
 int Proces_civil::procesScump = -1;
 double Proces_civil::taxaMaxima = -1;
-void Proces_civil::setStadiu(const bool &st)
-{
-    stadiu = st;
-}
-std::istream &operator>>(std::istream &os, Proces_civil &civil)
-{
-    civil.Proces::citi(os);
-    return civil.citi(os);
-}
-std::ostream &operator<<(std::ostream &os, const Proces_civil &civil)
-{
-    civil.Proces::afis(os);
-    return civil.afis(os);
-}
 void Proces_civil::printScumpProces()
 {
     try
@@ -69,12 +52,33 @@ void Proces_civil::printScumpProces()
     }
     std::cout << procesScump;
 }
-std::ostream &Proces_civil::afis(std::ostream &os) const
+int Proces_civil::getNrMartori() const
 {
-    os << "DauneMorale: " << dauneMorale << "\nDauneMateriale: " << dauneMateriale << "\nNrMartori: "
-       << nrMartori << "\nStadiu: " << stadiu << '\n';
-
-    return os;
+    return nrMartori;
+}
+double Proces_civil::taxaDeTimbru() const
+{
+    return .1 * dauneMorale + .1 * dauneMateriale;
+}
+double Proces_civil::getDauneMorale() const
+{
+    return dauneMorale;
+}
+void Proces_civil::setStadiu(const bool &st)
+{
+    stadiu = st;
+}
+double Proces_civil::getDauneMateriale() const
+{
+    return dauneMateriale;
+}
+void Proces_civil::setTaxa(const Proces_civil &x)
+{
+    if (taxaMaxima < x.taxaDeTimbru())
+    {
+        taxaMaxima = x.taxaDeTimbru();
+        procesScump = x.nrProces;
+    }
 }
 std::istream &Proces_civil::citi(std::istream &os)
 {
@@ -108,9 +112,16 @@ std::istream &Proces_civil::citi(std::istream &os)
 
     return os;
 }
-double Proces_civil::taxaDeTimbru() const
+void Proces_civil::setNrMartori(const int &nrMartorix)
 {
-    return .1 * dauneMorale + .1 * dauneMateriale;
+    Proces_civil::nrMartori = nrMartorix;
+}
+std::ostream &Proces_civil::afis(std::ostream &os) const
+{
+    os << "DauneMorale: " << dauneMorale << "\nDauneMateriale: " << dauneMateriale << "\nNrMartori: "
+       << nrMartori << "\nStadiu: " << stadiu << '\n';
+
+    return os;
 }
 Proces_civil &Proces_civil::operator=(const Proces_civil &x)
 {
@@ -136,37 +147,23 @@ Proces_civil &Proces_civil::operator=(const Proces_civil &x)
     setTaxa(*this);
     return *this;
 }
-void Proces_civil::setTaxa(const Proces_civil &x)
-{
-    if (taxaMaxima < x.taxaDeTimbru())
-    {
-        taxaMaxima = x.taxaDeTimbru();
-        procesScump = x.nrProces;
-    }
-}
-double Proces_civil::getDauneMorale() const
-{
-    return dauneMorale;
-}
 void Proces_civil::setDauneMorale(const double &dauneMoralex)
 {
     Proces_civil::dauneMorale = dauneMoralex;
     setTaxa(*this);
 }
-double Proces_civil::getDauneMateriale() const
+std::istream &operator>>(std::istream &os, Proces_civil &civil)
 {
-    return dauneMateriale;
+    civil.Proces::citi(os);
+    return civil.citi(os);
 }
 void Proces_civil::setDauneMateriale(const double &dauneMaterialex)
 {
     Proces_civil::dauneMateriale = dauneMaterialex;
     setTaxa(*this);
 }
-int Proces_civil::getNrMartori() const
+std::ostream &operator<<(std::ostream &os, const Proces_civil &civil)
 {
-    return nrMartori;
-}
-void Proces_civil::setNrMartori(const int &nrMartorix)
-{
-    Proces_civil::nrMartori = nrMartorix;
+    civil.Proces::afis(os);
+    return civil.afis(os);
 }

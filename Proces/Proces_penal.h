@@ -1,10 +1,7 @@
 #pragma once
-#include "InvalidData.h"
-
-// using namespace std;
 #include <iostream>
-#include <string>
 #include "Proces.h"
+#include "InvalidData.h"
 class Proces_penal : public Proces
 {
 private:
@@ -26,45 +23,45 @@ public:
     int getDovezi() const;
     ~Proces_penal(){};
 };
+int Proces_penal::getDovezi() const
+{
+    return dovezi;
+}
 void Proces_penal::setStadiu(const bool &a)
 {
     stadiu = a;
 }
-std::ostream &Proces_penal::afis(std::ostream &os) const
+void Proces_penal::setDovezi(const int &dovezix)
 {
-    os << "Dovezi: " << dovezi << "\nStadiu: " << stadiu << '\n';
-    return os;
-}
-std::ostream &operator<<(std::ostream &os, const Proces_penal &penal)
-{
-    penal.Proces::afis(os);
-    return penal.afis(os);
+    Proces_penal::dovezi = dovezix;
 }
 std::istream &Proces_penal::citi(std::istream &os)
 {
-    std::cout << "NrDovezi: ";
     try
     {
+        std::cout << "NrDovezi: ";
         std::string a;
         os >> a;
         if (eNumar(a))
         {
             dovezi = atoi(a.c_str());
-        }else throw InvalidData{};
+        }
+        else
+            throw InvalidData{};
     }
-    catch (const std::exception &e)
+    catch (const InvalidData &e)
     {
         std::cerr << e.what() << '\n';
-        exit(0);
+        exit(1); // panic
     }
 
     stadiu = (dovezi > 25) ? true : false;
     return os;
 }
-std::istream &operator>>(std::istream &os, Proces_penal &penal)
+std::ostream &Proces_penal::afis(std::ostream &os) const
 {
-    penal.Proces::citi(os);
-    return penal.citi(os);
+    os << "Dovezi: " << dovezi << "\nStadiu: " << stadiu << '\n';
+    return os;
 }
 Proces_penal &Proces_penal::operator=(const Proces_penal &x)
 {
@@ -74,7 +71,7 @@ Proces_penal &Proces_penal::operator=(const Proces_penal &x)
     }
     try
     {
-        Proces &rb = (*this); // upcast
+        Proces &rb = (*this);
         rb = x;
     }
     catch (std::bad_cast &)
@@ -85,11 +82,13 @@ Proces_penal &Proces_penal::operator=(const Proces_penal &x)
     stadiu = x.stadiu;
     return *this;
 }
-int Proces_penal::getDovezi() const
+std::istream &operator>>(std::istream &os, Proces_penal &penal)
 {
-    return dovezi;
+    penal.Proces::citi(os);
+    return penal.citi(os);
 }
-void Proces_penal::setDovezi(const int &dovezix)
+std::ostream &operator<<(std::ostream &os, const Proces_penal &penal)
 {
-    Proces_penal::dovezi = dovezix;
+    penal.Proces::afis(os);
+    return penal.afis(os);
 }

@@ -1,13 +1,8 @@
 #pragma once
-#include <iostream>
-#include <string>
 
 class InvalidData : public std::exception
 {
-
 public:
-
-
     InvalidData() = default;
 
     const char *what() const noexcept override

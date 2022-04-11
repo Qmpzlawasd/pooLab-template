@@ -1,8 +1,6 @@
 #pragma once
-#include "InvalidData.h"
-#include <string>
-// using namespace std;
 #include <iostream>
+#include "InvalidData.h"
 class Proces
 {
 protected:
@@ -27,6 +25,10 @@ public:
     void setNrProces(const int &);
     virtual ~Proces(){};
 };
+const std::string &Proces::getReclamant()
+{
+    return reclamant;
+}
 Proces &Proces::operator=(const Proces &x)
 {
     nrProces = x.nrProces;
@@ -61,36 +63,9 @@ std::istream &Proces::citi(std::istream &os)
 
     return os;
 }
-std::ostream &operator<<(std::ostream &os, const Proces &proces)
-{
-    proces.Proces::afis(os);
-    return proces.afis(os);
-}
-std::ostream &Proces::afis(std::ostream &os) const
-{
-    os << "NrProces: " << nrProces << "\nReclamant: " << reclamant << "\nReclamat: " << reclamat << '\n';
-    return os;
-}
-std::istream &operator>>(std::istream &os, Proces &proces)
-{
-    proces.Proces::citi(os);
-    return proces.citi(os);
-}
 void Proces::setNrProces(const int &nrProcesx)
 {
     Proces::nrProces = nrProcesx;
-}
-const std::string &Proces::getReclamant()
-{
-    return reclamant;
-}
-void Proces::setReclamat(const std::string &reclamatx)
-{
-    Proces::reclamat = reclamatx;
-}
-void Proces::setReclamant(const std::string &reclamantx)
-{
-    Proces::reclamant = reclamantx;
 }
 bool Proces::eNumar(const std::string &str)const
 {
@@ -100,4 +75,27 @@ bool Proces::eNumar(const std::string &str)const
             return false;
     }
     return true;
+}
+std::ostream &Proces::afis(std::ostream &os) const
+{
+    os << "NrProces: " << nrProces << "\nReclamant: " << reclamant << "\nReclamat: " << reclamat << '\n';
+    return os;
+}
+void Proces::setReclamat(const std::string &reclamatx)
+{
+    Proces::reclamat = reclamatx;
+}
+void Proces::setReclamant(const std::string &reclamantx)
+{
+    Proces::reclamant = reclamantx;
+}
+std::istream &operator>>(std::istream &os, Proces &proces)
+{
+    proces.Proces::citi(os);
+    return proces.citi(os);
+}
+std::ostream &operator<<(std::ostream &os, const Proces &proces)
+{
+    proces.Proces::afis(os);
+    return proces.afis(os);
 }
