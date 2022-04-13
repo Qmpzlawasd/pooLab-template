@@ -13,6 +13,7 @@ public:
     Proces(const Proces &x) : nrProces{x.nrProces}, reclamant{x.reclamant}, reclamat{x.reclamat} {}
     friend std::ostream &operator<<(std::ostream &, const Proces &);
     friend std::istream &operator>>(std::istream &, Proces &);
+    virtual std::ostream &afis(std::ostream &) const;
     int getNrProces() const { return nrProces; };
     virtual std::istream &citi(std::istream &);
     bool eNumar(const std::string &) const;
@@ -75,6 +76,11 @@ bool Proces::eNumar(const std::string &str) const
     }
     return true;
 }
+std::ostream &Proces::afis(std::ostream &os) const
+{
+    os << "NrProces: " << nrProces << "\nReclamant: " << reclamant << "\nReclamat: " << reclamat << '\n';
+    return os;
+}
 void Proces::setReclamat(const std::string &reclamatx)
 {
     Proces::reclamat = reclamatx;
@@ -90,7 +96,6 @@ std::istream &operator>>(std::istream &os, Proces &proces)
 }
 std::ostream &operator<<(std::ostream &os, const Proces &proces)
 {
-    return os;
-    // proces.Proces::afis(os);
-    // return proces.afis(os);
+    proces.Proces::afis(os);
+    return proces.afis(os);
 }
