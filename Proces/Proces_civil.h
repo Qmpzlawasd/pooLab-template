@@ -19,7 +19,6 @@ public:
     Proces_civil(const Proces_civil &x) : Proces{x}, nrMartori{x.nrMartori}, stadiu{x.stadiu}, dauneMorale{x.dauneMorale}, dauneMateriale{x.dauneMateriale} {};
     friend std::ostream &operator<<(std::ostream &, const Proces_civil &);
     friend std::istream &operator>>(std::istream &, Proces_civil &);
-    virtual std::ostream &afis(std::ostream &) const override;
     virtual std::istream &citi(std::istream &) override;
     bool getStadiu() const override { return stadiu; };
     Proces_civil &operator=(const Proces_civil &);
@@ -116,13 +115,6 @@ void Proces_civil::setNrMartori(const int &nrMartorix)
 {
     Proces_civil::nrMartori = nrMartorix;
 }
-std::ostream &Proces_civil::afis(std::ostream &os) const
-{
-    os << "DauneMorale: " << dauneMorale << "\nDauneMateriale: " << dauneMateriale << "\nNrMartori: "
-       << nrMartori << "\nStadiu: " << stadiu << '\n';
-
-    return os;
-}
 Proces_civil &Proces_civil::operator=(const Proces_civil &x)
 {
     if (this != &x)
@@ -165,6 +157,6 @@ void Proces_civil::setDauneMateriale(const double &dauneMaterialex)
 std::ostream &operator<<(std::ostream &os, const Proces_civil &civil)
 {
     return os;
-    civil.Proces::afis(os);
-    return civil.afis(os);
+    // civil.Proces::afis(os);
+    // return civil.afis(os);
 }

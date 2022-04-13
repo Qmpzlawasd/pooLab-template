@@ -14,7 +14,6 @@ public:
     Proces_penal(const Proces_penal &x) : Proces{x}, dovezi{x.dovezi}, stadiu{x.stadiu} {};
     friend std::ostream &operator<<(std::ostream &, const Proces_penal &);
     friend std::istream &operator>>(std::istream &, Proces_penal &);
-    virtual std::ostream &afis(std::ostream &) const override;
     virtual std::istream &citi(std::istream &) override;
     bool getStadiu() const override { return stadiu; };
     Proces_penal &operator=(const Proces_penal &);
@@ -58,11 +57,6 @@ std::istream &Proces_penal::citi(std::istream &os)
     stadiu = (dovezi > 25) ? true : false;
     return os;
 }
-std::ostream &Proces_penal::afis(std::ostream &os) const
-{
-    os << "Dovezi: " << dovezi << "\nStadiu: " << stadiu << '\n';
-    return os;
-}
 Proces_penal &Proces_penal::operator=(const Proces_penal &x)
 {
     if (this != &x)
@@ -90,6 +84,6 @@ std::istream &operator>>(std::istream &os, Proces_penal &penal)
 std::ostream &operator<<(std::ostream &os, const Proces_penal &penal)
 {
     return os;
-    penal.Proces::afis(os);
-    return penal.afis(os);
+    // penal.Proces::afis(os);
+    // return penal.afis(os);
 }
