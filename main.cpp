@@ -8,7 +8,6 @@
 using namespace std;
 int main()
 {
-    // ifstream cin("date.txt");
     vector<Proces *> judecatorie;
     unsigned long n{4}, acas{1};
     int coma{-12};

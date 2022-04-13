@@ -47,7 +47,7 @@ void Proces_civil::printScumpProces()
     }
     catch (const int &)
     {
-        std::cout << " nu avem rocese civile in vizor";
+        std::cout << " nu avem procese civile in vizor momentan (>_>)";
         return;
     }
     std::cout << procesScump;
