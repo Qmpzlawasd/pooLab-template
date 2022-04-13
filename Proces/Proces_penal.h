@@ -89,6 +89,7 @@ std::istream &operator>>(std::istream &os, Proces_penal &penal)
 }
 std::ostream &operator<<(std::ostream &os, const Proces_penal &penal)
 {
+    return os;
     penal.Proces::afis(os);
     return penal.afis(os);
 }

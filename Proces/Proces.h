@@ -96,6 +96,7 @@ std::istream &operator>>(std::istream &os, Proces &proces)
 }
 std::ostream &operator<<(std::ostream &os, const Proces &proces)
 {
+    return os;
     proces.Proces::afis(os);
     return proces.afis(os);
 }

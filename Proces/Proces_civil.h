@@ -164,6 +164,7 @@ void Proces_civil::setDauneMateriale(const double &dauneMaterialex)
 }
 std::ostream &operator<<(std::ostream &os, const Proces_civil &civil)
 {
+    return os;
     civil.Proces::afis(os);
     return civil.afis(os);
 }
