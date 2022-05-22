@@ -1,14 +1,15 @@
 #include <iostream>
-#include <fstream>
-#include <unordered_map>
 #include <algorithm>
 #include <vector>
-#include "ResurseUmane/HRManager.h"
-#include "ResurseUmane/InvalidAction.h"
+#include "Tema3/Proces.h"
+#include "Tema3/Judecatorie.h"
+#include "Tema3/Proces_civil.h"
+#include "Tema3/Proces_penal.h"
+#include "Tema3/Avocat.h"
 using namespace std;
 
 int main()
 {
-    HRManager &x = HRManager::getInstance();
-    x.runPrompt();
+    Judecatorie &piataUnirii = Judecatorie::getInstance();
+    piataUnirii.run();
 }
